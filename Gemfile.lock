@@ -1,0 +1,85 @@
+GIT
+  remote: git://github.com/eventmachine/eventmachine.git
+  revision: a92b667684ed17602fa91915e9095c1d7710ba43
+  specs:
+    eventmachine (1.0.0.beta.4)
+
+GIT
+  remote: git://github.com/igrigorik/em-http-request.git
+  revision: 6159c1643fc38e9a947c58834221856ed6fdf392
+  specs:
+    em-http-request (1.0.2)
+      addressable (>= 2.2.3)
+      cookiejar
+      em-socksify
+      eventmachine (>= 1.0.0.beta.4)
+      http_parser.rb (>= 0.5.3)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    addressable (2.2.8)
+    async-rack (0.5.1)
+      rack (~> 1.1)
+    bson (1.6.2)
+    bson_ext (1.6.2)
+      bson (~> 1.6.2)
+    cookiejar (0.3.0)
+    em-mongo (0.4.2)
+      bson (>= 1.1.3)
+      eventmachine (>= 0.12.10)
+    em-socksify (0.2.0)
+      eventmachine (>= 1.0.0.beta.4)
+    em-stathat (0.1.0)
+      em-http-request (~> 1.0)
+    em-synchrony (1.0.1)
+      eventmachine (>= 1.0.0.beta.1)
+    goliath (0.9.4)
+      async-rack
+      em-synchrony (>= 1.0.0)
+      eventmachine (>= 1.0.0.beta.3)
+      http_parser.rb
+      http_router (~> 0.9.0)
+      log4r
+      multi_json
+      rack (>= 1.2.2)
+      rack-contrib
+      rack-respond_to
+    http_parser.rb (0.5.3)
+    http_router (0.9.7)
+      rack (>= 1.0.0)
+      url_mount (~> 0.2.1)
+    httparty (0.8.3)
+      multi_json (~> 1.0)
+      multi_xml
+    log4r (1.1.10)
+    mongo (1.6.2)
+      bson (~> 1.6.2)
+    multi_json (1.3.4)
+    multi_xml (0.5.1)
+    placefinder (0.2.2)
+      httparty (>= 0.7.3)
+    rack (1.4.1)
+    rack-accept-media-types (0.9)
+    rack-contrib (1.1.0)
+      rack (>= 0.9.1)
+    rack-respond_to (0.9.8)
+      rack-accept-media-types (>= 0.6)
+    url_mount (0.2.1)
+      rack
+    yajl-ruby (1.1.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bson_ext (~> 1.6.2)
+  em-http-request!
+  em-mongo
+  em-stathat
+  eventmachine!
+  goliath
+  log4r
+  mongo
+  placefinder
+  yajl-ruby

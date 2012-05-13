@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h3>Hello SSE!</h3>
+  <script>
+    var source = new EventSource('/events');
+
+    // new connection opened callback
+    source.addEventListener('open', function(e) {
+      console.log('connection opened');
+    }, false);
+
+    // subscribe to unnamed messages
+    source.onmessage = function(e) {
+      console.log(e);
+      document.body.innerHTML += e.data + '<br />';
+    };
+
+    // listen for signup events
+    source.addEventListener('signup', function(e) {
+      last = e;
+      console.log('Data received');
+       document.body.innerHTML += e.data + '<br />';
+    }, false);
+
+    // connection closed callback
+    source.addEventListener('error', function(e) {
+      if (e.eventPhase == EventSource.CLOSED) {
+        console.log('connection closed');
+      }
+    }, false);
+
+  </script>
+</body>
+</html>

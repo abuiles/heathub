@@ -23,16 +23,16 @@ EM.run do
   cities_collection = db.collection('cities')
 
 
-  stop = Proc.new do
-    puts "Terminating crawler"
-    EM.stop
-  end
+  # stop = Proc.new do
+  #   puts "Terminating crawler"
+  #   EM.stop
+  # end
 
-  Signal.trap("INT",  &stop)
-  Signal.trap("TERM", &stop)
+  # Signal.trap("INT",  &stop)
+  # Signal.trap("TERM", &stop)
 
   process = Proc.new do
-    req = HttpRequest.new("https://github.com/timeline.json").get({
+    req = EventMachine::HttpRequest.new("https://github.com/timeline.json").get({
       :head => {
         'user-agent' => 'abuiles.com'
       }
