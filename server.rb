@@ -14,7 +14,8 @@ class EventGenerator < Goliath::API
 
   def response(env)
     env['subscription'] = $channel.subscribe do |event|
-      env.stream_send(["event:signup", "data:signup event #{Yajl::Encoder.encode(event["location"])}\n\n"].join("\n"))
+      location = {lat: event["location"]["latitude"].to_f, lng: event["location"]["longitude"].to_f }
+      env.stream_send(["event:push_event", "data:#{Yajl::Encoder.encode(location)}\n\n"].join("\n"))
     end
 
     streaming_response(200, {'Content-Type' => 'text/event-stream'})
@@ -29,8 +30,7 @@ class Server < Goliath::API
   use Goliath::Rack::Heartbeat
   use Goliath::Rack::Validation::RequestMethod, %w(GET)
 
-  use Rack::Static, :urls => ["/index.html"], :root => Goliath::Application.app_path("public")
-
+  use Rack::Static, :urls => ["/index.html", "/javascripts"], :root => Goliath::Application.app_path("public")
 
   get "/events" do
     run EventGenerator.new
