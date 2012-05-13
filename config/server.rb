@@ -1,3 +1,5 @@
+require 'uri'
+
 @log = Log4r::Logger.new('github')
 @log.add(Log4r::StdoutOutputter.new('console', {
   :formatter => Log4r::PatternFormatter.new(:pattern => "[#{Process.pid}:%l] %d :: %m")
@@ -5,7 +7,14 @@
 
 @latest = []
 
-db = EM::Mongo::Connection.new('localhost').db('heathub_development')
+if Goliath.env == "production"
+  uri  = URI.parse(ENV['MONGOLAB_URI'])
+  conn = EM::Mongo::Connection.from_uri(ENV['MONGOLAB_URI'])
+  db   = conn.db(uri.path.gsub(/^\//, ''))
+else
+  db = EM::Mongo::Connection.new('localhost').db('heathub_development')
+end
+
 collection = db.collection('push_events')
 cities_collection = db.collection('cities')
 $channel = EM::Channel.new
