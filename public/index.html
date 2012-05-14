@@ -26,12 +26,18 @@
       position:relative;
       width:1020px;
       padding:10px;
-      margin:auto;
+      margin:auto 15%;
+    }
+    #header{
+      position:relative;
+      width:80%;
+      padding:10px;
+      margin: auto 0px;
     }
     #heatmapArea {
       position:relative;
       float:left;
-      width:800px;
+      width: 80%;
       height: 600px;
       margin: 0 auto;
     }
@@ -98,15 +104,15 @@
   var myLatlng = new google.maps.LatLng(48.3333, 12.35);
 
   var myOptions = {
-	  zoom: 2,
-	  center: myLatlng,
-	  mapTypeId: google.maps.MapTypeId.ROADMAP,
-	  disableDefaultUI: false,
-	  scrollwheel: true,
-	  draggable: true,
-	  navigationControl: true,
-	  mapTypeControl: false,
-	  scaleControl: true
+    zoom: 2,
+    center: myLatlng,
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    disableDefaultUI: false,
+    scrollwheel: true,
+    draggable: true,
+    navigationControl: true,
+    mapTypeControl: false,
+    scaleControl: true
   };
   map = new google.maps.Map(document.getElementById("heatmapArea"), myOptions);
 
@@ -117,13 +123,43 @@
 </script>
 
   <div id="main">
-    <h1>Realtime Github Push Events</h1>
-    <div id="heatmapArea">
+    <div id="header">
+      <h1>HeatHub: Realtime Github Push Events
+        <span style="float:right; margin-top:0.25em">
+          <a href="https://twitter.com/abuiles"
+          class="twitter-follow-button" data-show-count="false">Built by @abuiles</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+          <div id="___plusone_0" style="height: 20px; width: 90px;
+                                        display: inline-block;
+                                        text-indent: 0px; margin-top:
+                                        0px; margin-right: 0px;
+                                        margin-bottom: 0px; margin-left:
+                                        0px; padding-top: 0px;
+                                        padding-right: 0px;
+                                        padding-bottom: 0px;
+                                        padding-left: 0px;
+                                        background-image: initial;
+                                        background-attachment: initial;
+                                        background-origin: initial;
+                                        background-clip: initial;
+                                        background-color: transparent;
+                                        border-top-style: none;
+                                        border-right-style: none;
+                                        border-bottom-style: none;
+                                        border-left-style: none; float:
+                                        none; line-height: normal;
+                                        font-size: 1px; vertical-align:
+                                        baseline; background-position:
+                                        initial initial;
+                                        background-repeat: initial
+                                        initial; ">
+            <iframe src="http://markdotto.github.com/github-buttons/github-btn.html?user=abuiles&repo=heathub&type=watch" allowtransparency="true" frameborder="0" scrolling="0" width="62px" height="20px"></iframe>
+          </div>
+        </span>
+    </h1>
     </div>
-    <div id="configArea">
-      <a href="https://twitter.com/abuiles" class="twitter-follow-button" data-show-count="false">Follow @abuiles</a>
-      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-    </div>
+  <div id="heatmapArea">
   </div>
+</div>
 </body>
 </html>
