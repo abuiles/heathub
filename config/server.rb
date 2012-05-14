@@ -1,3 +1,8 @@
+# Modified version of Ilya's Grigorik crawler for githubarchive.org.
+# https://github.com/igrigorik/githubarchive.org/blob/master/crawler/crawler.rb
+
+require 'uri'
+
 @log = Log4r::Logger.new('github')
 @log.add(Log4r::StdoutOutputter.new('console', {
   :formatter => Log4r::PatternFormatter.new(:pattern => "[#{Process.pid}:%l] %d :: %m")
@@ -5,7 +10,15 @@
 
 @latest = []
 
-db = EM::Mongo::Connection.new('localhost').db('heathub_development')
+if Goliath.env == :production
+  uri  = URI.parse(ENV['MONGOLAB_URI'])
+  db_name = uri.path.gsub(/^\//, '')
+  db = EM::Mongo::Connection.new(uri.host, uri.port).db(db_name)
+  db.authenticate(uri.user, uri.password)
+else
+  db = EM::Mongo::Connection.new('localhost').db('heathub_development')
+end
+
 collection = db.collection('push_events')
 cities_collection = db.collection('cities')
 $channel = EM::Channel.new
