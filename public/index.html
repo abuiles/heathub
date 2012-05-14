@@ -8,57 +8,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body, html {
-    margin:0;
-    padding:0;
-    font-family:Arial;
-    }
-    h1 {
-    margin-bottom:10px;
+      margin:0;
+      padding:0;
+      font-family:Arial;
     }
     #main {
-    position:relative;
-    width:1020px;
-    padding:20px;
-    margin:auto;
+      position:relative;
+      width:1020px;
+      padding:20px;
+      margin:auto;
     }
     #heatmapArea {
-    position:relative;
-    float:left;
-    width:800px;
-    height:700px;
-    border:1px dashed black;
-    }
-    #configArea {
-    position:relative;
-    float:left;
-    width:200px;
-    padding:15px;
-    padding-top:0;
-    padding-right:0;
-    }
-    .btn {
-    margin-top:25px;
-    padding:10px 20px 10px 20px;
-    -moz-border-radius:15px;
-    -o-border-radius:15px;
-    -webkit-border-radius:15px;
-    border-radius:15px;
-    border:2px solid black;
-    cursor:pointer;
-    color:white;
-    background-color:black;
-    }
-    #gen:hover{
-    background-color:grey;
-    color:black;
-    }
-    textarea{
-    width:260px;
-    padding:10px;
-    height:200px;
-    }
-    h2{
-    margin-top:0;
+      position:relative;
+      float:left;
+      width:1000px;
+      height:600px;
+      margin: 0 auto;
     }
   </style>
   <script type="text/javascript">
@@ -91,14 +56,12 @@
       console.log(e);
     };
 
-    // listen for signup events
     source.addEventListener('push_event', function(e) {
       last = e;
       var data = $.parseJSON(e.data)
       heatmap.addDataPoint(data.lat, data.lng, 1);
     }, false);
 
-    // connection closed callback
     source.addEventListener('error', function(e) {
       if (e.eventPhase == EventSource.CLOSED) {
         console.log('connection closed');
@@ -124,8 +87,7 @@
 	  draggable: true,
 	  navigationControl: true,
 	  mapTypeControl: false,
-	  scaleControl: true,
-          zoomControl: false
+	  scaleControl: true
   };
   map = new google.maps.Map(document.getElementById("heatmapArea"), myOptions);
 
