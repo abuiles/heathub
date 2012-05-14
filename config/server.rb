@@ -1,3 +1,6 @@
+# Modified version of Ilya's Grigorik crawler for githubarchive.org.
+# https://github.com/igrigorik/githubarchive.org/blob/master/crawler/crawler.rb
+
 require 'uri'
 
 @log = Log4r::Logger.new('github')
