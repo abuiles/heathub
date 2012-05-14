@@ -23,16 +23,26 @@ class EventGenerator < Goliath::API
 end
 
 
+class RootRedirect < Goliath::API
+  def response(env)
+    [301, {"Location" => "/index.html"}, self]
+  end
+end
+
+
 class Server < Goliath::API
   use Goliath::Rack::Params
 
-  use Goliath::Rack::Render, 'json'
   use Goliath::Rack::Heartbeat
   use Goliath::Rack::Validation::RequestMethod, %w(GET)
 
-  use Rack::Static, :urls => ["/index.html", "/javascripts"], :root => Goliath::Application.app_path("public")
+  use Rack::Static, :urls => ["/index.html"], :root => Goliath::Application.app_path("public")
 
   get "/events" do
     run EventGenerator.new
+  end
+
+  get "/" do
+    run lambda{ |env| [301, {"Location" => "/index.html"}, self] }
   end
 end
