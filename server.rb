@@ -22,14 +22,6 @@ class EventGenerator < Goliath::API
   end
 end
 
-
-class RootRedirect < Goliath::API
-  def response(env)
-    [301, {"Location" => "/index.html"}, self]
-  end
-end
-
-
 class Server < Goliath::API
   use Goliath::Rack::Params
 
