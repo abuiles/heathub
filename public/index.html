@@ -7,23 +7,42 @@
   <title>heatbub</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    <!-- Background image -->
+    <!-- Thanks to Sam Feyaerts <http://sam.feyaerts.me/> for the
+    background image -->
     body, html {
       margin:0;
       padding:0;
       font-family:Arial;
     }
+    h1{
+      color: white;
+    }
+    body{
+      background: url(https://raw.github.com/gist/2691545/78f32af5451aa45b62cb22338ff1677755e8ac1a/cartographer.png);
+      background-image: url(https://raw.github.com/gist/2691545/78f32af5451aa45b62cb22338ff1677755e8ac1a/cartographer.png);
+    }
     #main {
       position:relative;
       width:1020px;
-      padding:20px;
+      padding:10px;
       margin:auto;
     }
     #heatmapArea {
       position:relative;
       float:left;
-      width:1000px;
-      height: 650px;
+      width:800px;
+      height: 600px;
       margin: 0 auto;
+    }
+    #configArea {
+      color: white;
+      position: relative;
+      float: left;
+      width: 100px;
+      padding: 15px;
+      padding-top: 0;
+      padding-right: 0;
     }
   </style>
   <script type="text/javascript">
@@ -98,7 +117,12 @@
 </script>
 
   <div id="main">
+    <h1>Realtime Github Push Events</h1>
     <div id="heatmapArea">
+    </div>
+    <div id="configArea">
+      <a href="https://twitter.com/abuiles" class="twitter-follow-button" data-show-count="false">Follow @abuiles</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
     </div>
   </div>
 </body>
