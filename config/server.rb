@@ -52,7 +52,7 @@ process = Proc.new do
             @log.info "Pushing event"
             $channel.push event
 
-            collection.insert(event) unless Goliath.env == :production
+            collection.insert(event)
           else
             query = {:q => location, :flags => 'J'}
             http = EventMachine::HttpRequest.new('http://where.yahooapis.com/geocode').get :query => query
@@ -74,7 +74,7 @@ process = Proc.new do
 
                 cities_collection.insert( city_info)
                 $channel.push event
-                collection.insert(event) unless Goliath.env == :production
+                collection.insert(event)
               end
             }
           end
