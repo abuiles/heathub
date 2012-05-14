@@ -7,10 +7,11 @@ require 'uri'
 
 @latest = []
 
-if Goliath.env == "production"
+if Goliath.env == :production
   uri  = URI.parse(ENV['MONGOLAB_URI'])
-  conn = EM::Mongo::Connection.from_uri(ENV['MONGOLAB_URI'])
-  db   = conn.db(uri.path.gsub(/^\//, ''))
+  db_name = uri.path.gsub(/^\//, '')
+  db = EM::Mongo::Connection.new(uri.host, uri.port).db(db_name)
+  db.authenticate(uri.user, uri.password)
 else
   db = EM::Mongo::Connection.new('localhost').db('heathub_development')
 end
@@ -51,7 +52,7 @@ process = Proc.new do
             @log.info "Pushing event"
             $channel.push event
 
-            collection.insert(event) unless Goliath.env == 'production'
+            collection.insert(event) unless Goliath.env == :production
           else
             query = {:q => location, :flags => 'J'}
             http = EventMachine::HttpRequest.new('http://where.yahooapis.com/geocode').get :query => query
@@ -73,7 +74,7 @@ process = Proc.new do
 
                 cities_collection.insert( city_info)
                 $channel.push event
-                collection.insert(event) unless Goliath.env == 'production'
+                collection.insert(event) unless Goliath.env == :production
               end
             }
           end
