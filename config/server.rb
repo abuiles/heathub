@@ -21,7 +21,12 @@ end
 
 collection = db.collection('push_events')
 cities_collection = db.collection('cities')
+
+# Messaging
 $channel = EM::Channel.new
+
+
+#----------------- Crawler --------------------------------------------------------#
 
 process = Proc.new do
   req = EventMachine::HttpRequest.new("https://github.com/timeline.json").get({
@@ -107,3 +112,5 @@ process = Proc.new do
 end
 
 EM.add_periodic_timer(6, &process)
+
+# -------------------------------------------------------------------------------- #
